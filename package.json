@@ -1,0 +1,46 @@
+{
+  "name": "windows-volume-scheduler",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Schedule audio volume on a Windows system",
+  "exports": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "postinstall": "node src/install-service.js",
+    "uninstall": "node src/uninstall-service.js"
+  },
+  "bin": {
+    "showip": "src/show-interfaces.js"
+  },
+  "keywords": [
+    "audio",
+    "volume",
+    "audio volume",
+    "sound volume",
+    "scheduler",
+    "windows"
+  ],
+  "author": "blu3mania <blu3mania@hotmail.com>",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/blu3mania/windows-volume-scheduler#readme",
+  "bugs": {
+    "url": "https://github.com/blu3mania/windows-volume-scheduler/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blu3mania/windows-volume-scheduler.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "os": [
+    "win32"
+  ],
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "ffi-napi": "^4.0.3",
+    "node-notifier": "^10.0.1",
+    "node-windows": "^1.0.0-beta.8"
+  },
+  "devDependencies": {}
+}

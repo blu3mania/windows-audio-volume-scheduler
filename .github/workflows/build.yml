@@ -1,0 +1,67 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+  release:
+    types: [created]
+
+env:
+  # Path to the solution file relative to the root of the project.
+  solution_file: VolumeControl.sln
+
+jobs:
+  Build:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Release, Debug]
+        platform: [x64]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          submodules: recursive
+          show-progress: false
+
+      - name: Run git diff check
+        run: |
+          git config --global core.whitespace cr-at-eol,tab-in-indent
+          git diff --check HEAD^ ':!*.sln'
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Build binaries
+        run: msbuild /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} ${{ env.solution_file }}
+
+      - name: Create release package
+        if: github.event_name == 'release' && matrix.configuration == 'Release'
+        run: |
+          & "C:\Program Files\7-Zip\7z.exe" a windows-audio-volume-scheduler-${{ github.event.release.tag_name }}.zip LICENSE package.json VolumeControl.dll Test.exe README.md src
+
+      - name: Upload release package
+        if: github.event_name == 'release' && matrix.configuration == 'Release'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./windows-audio-volume-scheduler-${{ github.event.release.tag_name }}.zip
+          asset_name: windows-audio-volume-scheduler-${{ github.event.release.tag_name }}.zip
+          asset_content_type: application/zip
+
+      - name: VirusTotal scan
+        if: github.event_name == 'release' && matrix.configuration == 'Release'
+        uses: crazy-max/ghaction-virustotal@v3
+        with:
+          vt_api_key: ${{ secrets.VIRUSTOTAL_API_KEY }}
+          github_token: ${{ github.token }}
+          update_release_body: true
+          files: windows-audio-volume-scheduler-${{ github.event.release.tag_name }}.zip

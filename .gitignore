@@ -1,0 +1,9 @@
+node_modules/
+package-lock.json
+yarn.lock
+*.dll
+*.lib
+*.exp
+*.exe
+/src/daemon/
+x64/

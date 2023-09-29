@@ -1,0 +1,16 @@
+{
+    "service": {
+        "name": "Audio Volume Scheduler"
+    },
+    "schedule": [
+        {
+            "time": "21:00",
+            "volume": "0"
+        },
+        {
+            "time": "9:00",
+            "volume": "50"
+        }
+    ],
+    "showNotification": false
+}

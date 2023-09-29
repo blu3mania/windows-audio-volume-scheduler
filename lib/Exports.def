@@ -1,0 +1,3 @@
+EXPORTS
+  setVolume
+  setMute
