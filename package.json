@@ -1,5 +1,5 @@
 {
-  "name": "windows-volume-scheduler",
+  "name": "windows-audio-volume-scheduler",
   "type": "module",
   "version": "1.0.0",
   "description": "Schedule audio volume on a Windows system",
@@ -22,13 +22,13 @@
   ],
   "author": "blu3mania <blu3mania@hotmail.com>",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/blu3mania/windows-volume-scheduler#readme",
+  "homepage": "https://github.com/blu3mania/windows-audio-volume-scheduler#readme",
   "bugs": {
-    "url": "https://github.com/blu3mania/windows-volume-scheduler/issues"
+    "url": "https://github.com/blu3mania/windows-audio-volume-scheduler/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/blu3mania/windows-volume-scheduler.git"
+    "url": "https://github.com/blu3mania/windows-audio-volume-scheduler.git"
   },
   "engines": {
     "node": ">=16.0.0"
