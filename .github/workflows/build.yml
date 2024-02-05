@@ -36,7 +36,7 @@ jobs:
           git diff --check HEAD^ ':!*.sln'
 
       - name: Add MSBuild to PATH
-        uses: microsoft/setup-msbuild@v1
+        uses: microsoft/setup-msbuild@v2
 
       - name: Build binaries
         run: msbuild /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} ${{ env.solution_file }}
