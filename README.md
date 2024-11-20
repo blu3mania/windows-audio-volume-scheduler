@@ -1,6 +1,6 @@
 # windows-audio-volume-scheduler
 [![Apache 2.0 License](https://img.shields.io/badge/License-Apache%202.0-yellow)](https://raw.githubusercontent.com/blu3mania/windows-audio-volume-scheduler/main/LICENSE)
-[![node.js 16+](https://img.shields.io/badge/node.js-16.0.0-blue?logo=node.js)](https://nodejs.org/en/)
+[![node.js 18+](https://img.shields.io/badge/node.js-18.0.0-blue?logo=node.js)](https://nodejs.org/en/)
 [![Latest Release](https://img.shields.io/github/v/release/blu3mania/windows-audio-volume-scheduler)](https://github.com/blu3mania/windows-audio-volume-scheduler/releases/latest)
 
 Automatically adjust Windows system audio level based on a configurable schedule.
